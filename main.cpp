@@ -1,4 +1,6 @@
 #include <iostream>
+#include <sstream>
+#include <cstring>
 
 using namespace std;
 
@@ -57,3 +59,36 @@ int main(){
     string stroka;
     getline(cin, stroka);
     istringstream stream(stroka);
+    complex_t ch1; complex_t ch2;
+    char op;
+    if(proverka(ch1)){
+        stream>>op;
+        if((op!='+')||(op!='-')||(op!='*')||(op!='/')){
+            cout<<"An error has occured while reading input data"<<endl;
+            return -1;
+        }
+    }
+    else{
+        cout<<"An error has occured while reading input data"<<endl;
+        return -1;
+    }
+    if(proverka(ch2)){
+        if(op=='+'){
+            cout<<"("<<ch1.real+ch2.real<<","<<ch1.imag+ch2.imag<<")"<<endl;
+        }
+        if(op=='-'){
+            cout<<"("<<ch1.real-ch2.real<<","<<ch1.imag-ch2.imag<<")"<<endl;
+        }
+        if(op=='*'){
+            cout<<"("<<ch1.real*ch2.real-ch1.imag*ch2.imag<<","<<ch1.imag*ch2.real+ch1.real*ch2.imag<<")"<<endl;
+        }
+        if(op=='/'){
+            cout<<"("<<(ch1.real*ch2.real+ch1.imag*ch2.imag)/(ch2.real*ch2.real+ch2.imag*ch2.imag)<<","<<(ch1.imag*ch2.real-ch1.real*ch2.imag)/(ch2.real*ch2.real+ch2.imag*ch2.imag)<<")"<<endl;
+        }
+    }
+    else{
+        cout<<"An error has occured while reading input data"<<endl;
+        return -1;
+    }
+    return 0;
+}
