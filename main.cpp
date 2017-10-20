@@ -9,7 +9,7 @@ struct complex_t{
     float imag; 
 };
 
-bool proverka(complex_t ch){
+bool proverka(istringstream & stream,complex_t & ch){
     char op1, op2, op3;
     bool f=1;
     if(stream>>op1){
@@ -61,18 +61,18 @@ int main(){
     istringstream stream(stroka);
     complex_t ch1; complex_t ch2;
     char op;
-    if(proverka(ch1)){
+    if(proverka(stream,ch1)){
         stream>>op;
-        if((op!='+')||(op!='-')||(op!='*')||(op!='/')){
+        if((op!='+')&&(op!='-')&&(op!='*')&&(op!='/')){
             cout<<"An error has occured while reading input data"<<endl;
-            return -1;
+            return -2;
         }
     }
     else{
         cout<<"An error has occured while reading input data"<<endl;
         return -1;
     }
-    if(proverka(ch2)){
+    if(proverka(stream,ch2)){
         if(op=='+'){
             cout<<"("<<ch1.real+ch2.real<<","<<ch1.imag+ch2.imag<<")"<<endl;
         }
@@ -88,7 +88,7 @@ int main(){
     }
     else{
         cout<<"An error has occured while reading input data"<<endl;
-        return -1;
+        return -3;
     }
     return 0;
 }
