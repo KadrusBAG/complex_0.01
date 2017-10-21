@@ -39,48 +39,16 @@ complex_t div(complex_t ch1, complex_t ch2){
 
 bool read(istringstream & stream,complex_t & ch){
     char op1, op2, op3;
-    bool f=1;
-    if(stream>>op1){
-        if(op1=='('){
-            if(stream>>ch.real){
-                if(stream>>op2){
-                    if(op2==','){
-                        if(stream>>ch.imag){
-                            if(stream>>op3){
-                                if(op3==')'){
-                                }
-                                else{
-                                    f=0;
-                                }
-                            }
-                            else{
-                                f=0;
-                            }
-                        }
-                        else{
-                            f=0;
-                        }
-                    }
-                    else{
-                        f=0;
-                    }
-                }
-                else{
-                    f=0;
-                }
-            }
-            else{
-                f=0;
-            }
-        }
-        else{
-            f=0;
-        }
+    if( stream>>op1 && op1 == '(' &&
+        stream>>ch.real &&
+        stream>>op2 && op2==',' &&
+        stream>>ch.imag && 
+        stream>>op3 && op3==')' ) {
+        
+        return true;
     }
-    else{
-        f=0;
-    }
-    return f;
+
+    return false;
 }
 
 void write(complex_t ch){
